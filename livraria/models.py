@@ -26,4 +26,11 @@ class Autor(models.Model):
         verbose_name = "Autor"
         verbose_name_plural = "Autores"
 
+class Livro(models.Model):
+    titulo: str = models.CharField(max_length=255)
+    isbn: str = models.CharField(max_length=32, null=True, blank=True)
+    quantidade: int = models.IntegerField(default=0, null=True, blank=True)
+    preco: float = models.DecimalField(max_digits=7, decimal_places=2, default=0, null=True, blank=True)
 
+    def __str__(self) -> str:
+        return f"{self.titulo} ({self.quantidade})"
