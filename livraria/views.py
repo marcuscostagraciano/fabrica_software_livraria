@@ -2,7 +2,9 @@ from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 
 from livraria.models import Autor, Categoria, Editora, Livro
-from livraria.serializers import AutorSerializer, CategoriaSerializer, EditoraSerializer, LivroSerializer, LivroDetailSerializer, LivroListSerializer
+from livraria.serializers import (AutorSerializer, CategoriaSerializer,
+                                  EditoraSerializer, LivroSerializer,
+                                  LivroDetailSerializer, LivroListSerializer)
 
 
 # Create your views here.
@@ -23,7 +25,7 @@ class AutorViewSet(ModelViewSet):
 
 class LivroViewSet(ModelViewSet):
     queryset = Livro.objects.all()
-    
+
     def get_serializer_class(self):
         if self.action == "list":
             return LivroListSerializer
