@@ -9,6 +9,7 @@ from rest_framework_simplejwt.views import (
 
 from livraria.views import (AutorViewSet, CategoriaViewSet,
                             EditoraViewSet, LivroViewSet)
+from usuario.router import router as usuario_router
 
 router = DefaultRouter()
 router.register(r"autores", AutorViewSet)
@@ -21,4 +22,5 @@ urlpatterns = [
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("", include(router.urls)),
+    path("api/", include(usuario_router.urls)),
 ]
