@@ -1,5 +1,21 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+
+MODE = os.getenv("MODE")
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("DEBUG", "False")
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "http://localhost:8000", "https://*.fl0.io/"]
+
+if MODE in ["PRODUCTION", "MIGRATE"]:
+    MEDIA_URL = '/media/'
+else:
+    MY_IP = os.getenv("MY_IP", "127.0.0.1")
+    MEDIA_URL = f"http://{MY_IP}:19003/media/"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5=c*@vyzr-tlt#p_k&u*s5(_nzd^d&8@*d_adhi_m%#53_6nyg'
+# SECRET_KEY = 'django-insecure-5=c*@vyzr-tlt#p_k&u*s5(_nzd^d&8@*d_adhi_m%#53_6nyg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
