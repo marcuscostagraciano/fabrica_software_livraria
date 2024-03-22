@@ -1,5 +1,10 @@
 import magic
 
+# CHECK IF OS IS WINDOWS (HOME PC)
+from sys import platform
+if platform == 'win32':
+    file_magic = magic.Magic(magic_file=r"C:\Windows\System32\magic\magic.mgc")
+
 CONTENT_TYPE_ICO = "image/x-icon"
 CONTENT_TYPE_JPG = "image/jpeg"
 CONTENT_TYPE_PNG = "image/png"
