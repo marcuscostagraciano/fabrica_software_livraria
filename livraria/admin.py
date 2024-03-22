@@ -8,7 +8,7 @@ from .models import (Autor,
 
 
 # Register your models here.
-admin.site.register(Compra)
+# admin.site.register(Compra)
 admin.site.register(ItensCompra)
 
 
@@ -43,3 +43,12 @@ class LivroAdmin(admin.ModelAdmin):
     list_filter = ('editora', 'categoria')
     ordering = ('titulo', 'editora', 'categoria')
     list_per_page = 25
+
+
+class ItensCompraInline(admin.TabularInline):
+    model = ItensCompra
+
+
+@admin.register(Compra)
+class CompraAdmin(admin.ModelAdmin):
+    inlines = [ItensCompraInline]
