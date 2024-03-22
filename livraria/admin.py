@@ -10,6 +10,7 @@ class AutorAdmin(admin.ModelAdmin):
     list_filter = ('nome',)
     ordering = ('nome', 'email')
 
+
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
     list_display = ('descricao',)
@@ -17,12 +18,14 @@ class CategoriaAdmin(admin.ModelAdmin):
     list_filter = ('descricao',)
     ordering = ('descricao',)
 
+
 @admin.register(Editora)
 class EditoraAdmin(admin.ModelAdmin):
     list_display = ('nome',)
     search_fields = ('nome',)
     list_filter = ('nome',)
     ordering = ('nome',)
+
 
 @admin.register(Livro)
 class LivroAdmin(admin.ModelAdmin):
