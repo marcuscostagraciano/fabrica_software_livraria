@@ -9,9 +9,14 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from livraria.views import (AutorViewSet, CategoriaViewSet,
-                            EditoraViewSet, LivroViewSet, UsuarioViewSet)
-from usuario.router import router as usuario_router
+from livraria.views import (AutorViewSet,
+                            CategoriaViewSet,
+                            EditoraViewSet,
+                            LivroViewSet,
+                            UsuarioViewSet,
+                            CompraViewSet)
+
+# from usuario.router import router as usuario_router
 from uploader.router import router as uploader_router
 from drf_spectacular.views import (
     SpectacularAPIView,
@@ -26,6 +31,7 @@ router.register(r"categorias", CategoriaViewSet)
 router.register(r"editoras", EditoraViewSet)
 router.register(r"livros", LivroViewSet)
 router.register(r"usuarios", UsuarioViewSet)
+router.register(r"compras", CompraViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
