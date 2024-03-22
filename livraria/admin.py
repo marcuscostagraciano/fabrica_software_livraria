@@ -1,9 +1,15 @@
 from django.contrib import admin
-from .models import Autor, Categoria, Compra, Editora, Livro
+from .models import (Autor,
+                     Categoria,
+                     Compra,
+                     ItensCompra,
+                     Editora,
+                     Livro)
 
 
 # Register your models here.
 admin.site.register(Compra)
+admin.site.register(ItensCompra)
 
 
 @admin.register(Autor)
