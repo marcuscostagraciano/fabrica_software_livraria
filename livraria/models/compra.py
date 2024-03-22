@@ -24,6 +24,11 @@ class Compra(models.Model):
     def __str__(self) -> str:
         return f"{self.usuario} - {compra_status_dict[self.status]}"
 
+    @property
+    def total(self):
+        return sum(item.livro.preco * item.quantidade
+                   for item in self.itens.all())
+
 
 class ItensCompra(models.Model):
     compra: Compra = models.ForeignKey(Compra, on_delete=models.CASCADE, related_name="itens")
