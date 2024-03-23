@@ -28,7 +28,7 @@ class Compra(models.Model):
 
     @property
     def total(self):
-        return sum(item.livro.preco * item.quantidade
+        return sum(item.preco_item * item.quantidade
                    for item in self.itens.all())
 
 
@@ -38,6 +38,8 @@ class ItensCompra(models.Model):
     livro: Livro = models.ForeignKey(Livro, on_delete=models.PROTECT,
                                      related_name="+")
     quantidade: int = models.IntegerField(default=1)
+    preco_item: float = models.DecimalField(max_digits=10, decimal_places=2,
+                                            default=0)
 
     def __str__(self) -> str:
         return f"{self.compra} - {self.livro}"
