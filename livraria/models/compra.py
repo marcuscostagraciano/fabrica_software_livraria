@@ -22,6 +22,7 @@ class Compra(models.Model):
                                 related_name="compras")
     status = models.IntegerField(choices=StatusCompra.choices,
                                  default=StatusCompra.CARRINHO)
+    data = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return f"{self.usuario} - {compra_status_dict[self.status]}"

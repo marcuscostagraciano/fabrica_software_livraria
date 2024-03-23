@@ -12,11 +12,11 @@ class CompraViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     # busca pelo(s) campo(s) declarado(s)
     # ex.: status=(1, 2, 3 ou 4)
-    filterset_fields = ["usuario", "status"]
+    filterset_fields = ["usuario", "status", "data"]
     # busca quando usar o search=
     search_fields = ["status"]
     # possíveis filtros
-    ordering_fields = ["usuario", "status"]
+    ordering_fields = ["usuario", "status", "data"]
     # filtro padrão
     ordering = ["usuario"]
 

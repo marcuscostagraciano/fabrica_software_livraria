@@ -22,10 +22,11 @@ class CompraSerializer(ModelSerializer):
     # usuario = serializers.HiddenField(default=serializers.CurrentUserDefault())
     itens = ItensCompraSerializer(many=True)
     status = CharField(source="get_status_display", read_only=True)
+    data = serializers.DateTimeField(read_only=True)
 
     class Meta:
         model = Compra
-        fields = ("id", "usuario", "status", "total", "itens")
+        fields = ("id", "usuario", "status", "total", "data", "itens")
 
 
 class CriarEditarItensCompraSerializer(ModelSerializer):
