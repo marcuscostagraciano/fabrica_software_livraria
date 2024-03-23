@@ -18,8 +18,10 @@ class Compra(models.Model):
         PAGO = 3, "Pago"
         ENTREGUE = 4, "Entregue"
 
-    usuario = models.ForeignKey(Usuario, on_delete=models.PROTECT, related_name="compras")
-    status = models.IntegerField(choices=StatusCompra.choices, default=StatusCompra.CARRINHO)
+    usuario = models.ForeignKey(Usuario, on_delete=models.PROTECT,
+                                related_name="compras")
+    status = models.IntegerField(choices=StatusCompra.choices,
+                                 default=StatusCompra.CARRINHO)
 
     def __str__(self) -> str:
         return f"{self.usuario} - {compra_status_dict[self.status]}"
@@ -31,8 +33,10 @@ class Compra(models.Model):
 
 
 class ItensCompra(models.Model):
-    compra: Compra = models.ForeignKey(Compra, on_delete=models.CASCADE, related_name="itens")
-    livro: Livro = models.ForeignKey(Livro, on_delete=models.PROTECT, related_name="+")
+    compra: Compra = models.ForeignKey(Compra, on_delete=models.CASCADE,
+                                       related_name="itens")
+    livro: Livro = models.ForeignKey(Livro, on_delete=models.PROTECT,
+                                     related_name="+")
     quantidade: int = models.IntegerField(default=1)
 
     def __str__(self) -> str:
