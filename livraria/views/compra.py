@@ -4,6 +4,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from livraria.models import Compra
 from livraria.serializers import CompraSerializer, CriarEditarCompraSerializer
+from usuario.models import Usuario
 
 
 class CompraViewSet(ModelViewSet):
@@ -25,6 +26,8 @@ class CompraViewSet(ModelViewSet):
         if usuario.is_superuser:
             return Compra.objects.all()
         elif usuario.groups.filter(name="Administradores"):
+            return Compra.objects.all()
+        elif usuario.tipo == Usuario.TipoUsuario.GERENTE:
             return Compra.objects.all()
         return Compra.objects.filter(usuario=usuario)
 

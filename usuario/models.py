@@ -7,13 +7,23 @@ from .managers import CustomUserManager
 
 
 class Usuario(AbstractUser):
+    class TipoUsuario(models.IntegerChoices):
+        CLIENTE = 1, "Cliente"
+        VENDEDOR = 2, "Vendedor"
+        GERENTE = 3, "Gerente"
+
     username = None
     email = models.EmailField(_("e-mail address"), unique=True)
-    cpf = models.CharField(_("CPF"), max_length=11, blank=True, null=True)
-    telefone = models.CharField(_("Phone"), max_length=11, blank=True, null=True)
+    cpf = models.CharField(_("CPF"), max_length=11,
+                           blank=True, null=True)
+    telefone = models.CharField(_("Phone"), max_length=11,
+                                blank=True, null=True)
     data_nascimento = models.DateField(
-        _("Birth Date"), auto_now=False, auto_now_add=False, blank=True, null=True
-    )
+        _("Birth Date"), auto_now=False, auto_now_add=False,
+        blank=True, null=True)
+    tipo_usuario = models.IntegerField(_("User Type"),
+                                       choices=TipoUsuario.choices,
+                                       default=TipoUsuario.CLIENTE)
     foto = models.ForeignKey(
         Image,
         on_delete=models.SET_NULL,
